@@ -13,10 +13,13 @@ public class InputManager : MonoBehaviour {
 		if (Input.GetMouseButton(0))
 		{
 			Vector3 pos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, 
-				Input.mousePosition.y,150));
+				Input.mousePosition.y,100));
 			
 			if (_selection == null)
-				_selection = FindClosestTransformWithTag(pos,InputReceiverTag);
+			{
+				_selection = Utils.FindClosestTransformWithTag(pos,InputReceiverTag);
+				_selection.SendMessage("OnTouchBegan");
+			}
 
 			_selection.SendMessage("OnInput",pos);
 			
@@ -32,28 +35,28 @@ public class InputManager : MonoBehaviour {
 	
 		
 	// HACK: integrate into utils function
-	public Transform FindClosestTransformWithTag(Vector3 fromPos, string tag)
-	{
-		GameObject[] allTargets = GameObject.FindGameObjectsWithTag(tag);
-		GameObject newTarget = null;
-		
-		float minDist = float.MaxValue;
-
-		foreach (GameObject target in allTargets)
-		{
-			float dist = Vector3.Distance(target.transform.position, fromPos);
-			if (dist < minDist && target.GetComponent<Attack>().enabled)
-			{
-				newTarget = target;
-				minDist = dist;
-			}
-			
-		}
-		
-		if (newTarget == null)
-			return null;
-		else
-			return newTarget.transform;
-	}
+//	public Transform FindClosestTransformWithTag(Vector3 fromPos, string tag)
+//	{
+//		GameObject[] allTargets = GameObject.FindGameObjectsWithTag(tag);
+//		GameObject newTarget = null;
+//		
+//		float minDist = float.MaxValue;
+//
+//		foreach (GameObject target in allTargets)
+//		{
+//			float dist = Vector3.Distance(target.transform.position, fromPos);
+//			if (dist < minDist && target.GetComponent<Attack>().enabled)
+//			{
+//				newTarget = target;
+//				minDist = dist;
+//			}
+//			
+//		}
+//		
+//		if (newTarget == null)
+//			return null;
+//		else
+//			return newTarget.transform;
+//	}
 		
 }

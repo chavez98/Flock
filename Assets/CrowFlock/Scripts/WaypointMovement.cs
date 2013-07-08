@@ -10,8 +10,15 @@ public class WaypointMovement : MonoBehaviour {
 	
 	List<Vector3> waypoints = new List<Vector3>();
 	
+	void OnTouchBegan()
+	{
+		waypoints.Clear();	
+	}
+	
 	void OnInput(Vector3 pos)
 	{
+		waypoints.Clear();	
+		
 		if (waypoints.Count == 0 || Vector3.Distance(waypoints[waypoints.Count-1],pos) > MinDistBetweenWaypoints)
 		{
 			waypoints.Add(pos);	
@@ -42,7 +49,8 @@ public class WaypointMovement : MonoBehaviour {
 		}
 		
 		Vector3 dir = (waypoints[0] - transform.position).normalized;
-		transform.position += dir * Speed * Time.deltaTime;
+		float lineLengthMutliplier = Vector3.Distance(transform.position,waypoints[0]) / (Screen.width * .01f);
+		transform.position += dir * Speed * Time.deltaTime * lineLengthMutliplier;
 		
 		Quaternion rotation = Quaternion.LookRotation(dir);
 		transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * TurnSpeed);	
@@ -55,7 +63,7 @@ public class WaypointMovement : MonoBehaviour {
 		Transform closestRedCell = Utils.FindClosestTransformWithTag(transform.position,"RedCell");
 		
 			// did they catch up to target?
-			if (Vector3.Distance(closestRedCell.position, transform.position) < 2)
+			if (closestRedCell != null && Vector3.Distance(closestRedCell.position, transform.position) < 2)
 			{
 				Instantiate(gameObject,transform.position,Quaternion.identity);
 				
