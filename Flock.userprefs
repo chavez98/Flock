@@ -1,0 +1,16 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/CrowFlock/Scripts/InputManager.cs">
+    <Files>
+      <File FileName="Assets/CrowFlock/Scripts/Flee.cs" Line="115" Column="3" />
+      <File FileName="Assets/CrowFlock/Scripts/Attack.cs" Line="94" Column="3" />
+      <File FileName="Assets/CrowFlock/Scripts/Utils.cs" Line="6" Column="1" />
+      <File FileName="Assets/CrowFlock/Scripts/CellSpawner.cs" Line="27" Column="22" />
+      <File FileName="Assets/CrowFlock/Scripts/InputManager.cs" Line="21" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
